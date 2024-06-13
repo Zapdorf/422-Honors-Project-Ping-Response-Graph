@@ -1,0 +1,120 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication1.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:AvaloniaApplication1.Views"
+        xmlns:viewModels="clr-namespace:AvaloniaApplication1.ViewModels"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="620"
+        x:Class="AvaloniaApplication1.Views.MainWindow"
+        Icon="/Assets/rss_logo_icon_258909.ico"
+        Title="422 Honors Project">
+
+        <Window.DataContext>
+          <viewModels:MainViewModel />
+        </Window.DataContext>
+
+        <StackPanel>
+          <DockPanel>
+            <Menu DockPanel.Dock="Top">
+              <MenuItem Header="_File">
+                <MenuItem Header="Load Address Configuration" x:Name="loadFileButton"/>
+                <Separator/>
+                <MenuItem Header="Save Results" x:Name="saveResultsButton"/>
+                <MenuItem Header="Load Results" x:Name="loadResultsButton"/>
+              </MenuItem>
+              <MenuItem Header="_Edit">
+                <MenuItem Header="Clear Results" x:Name="clearResultsEditButton"/>
+                <MenuItem Header="Clear Addresses" x:Name="clearAddressesEditButton"/>
+              </MenuItem>
+            </Menu>
+          </DockPanel>
+
+        <Grid ColumnDefinitions="350, 5,*" RowDefinitions="*" Margin="5">
+
+          <!-- This is all the stuff on the left -->
+  
+ 
+          <Border BorderThickness="1" BorderBrush="White">
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+
+
+              <!--<Button x:Name="loadFileButton">Load Configuration</Button>-->
+
+              
+              <Label HorizontalAlignment="Center">Addresses:</Label>
+
+              <Border Background="Gray" Height="275" Margin="5" >
+                <ScrollViewer>
+                  <StackPanel>
+                    <ListBox x:Name="ipList" SelectionChanged="NewIPSelected" />
+                  </StackPanel>
+                </ScrollViewer>
+              </Border>
+
+            
+              <Grid ColumnDefinitions="4*,*" Margin="5">
+                <StackPanel Grid.Column="0">
+                  <TextBox x:Name="newIpBox" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                  <Button Click="AddNewIp" Width="50" HorizontalAlignment="Center" Content="Center">Add</Button>
+                </StackPanel>
+              </Grid>
+
+              <Grid Margin="20"></Grid>
+              <Label HorizontalAlignment="Center">Log:</Label>
+              <Border Background="Gray" Height="100">
+                <ScrollViewer>
+                  <StackPanel>
+                    <TextBlock x:Name="pingResultsList" />
+                  </StackPanel>
+                </ScrollViewer>
+              </Border>
+
+              <!--
+                <Grid Margin="6"></Grid>
+                <Label HorizontalAlignment="Center">Graph Time Range:</Label>
+                <Grid ColumnDefinitions="*" RowDefinitions="*, *, *, *" Margin="1" HorizontalAlignment="Center">
+                  <CheckBox Grid.Row="0" Grid.Column="0" >Bound enabled</CheckBox>
+
+                  <TimePicker ClockIdentifier="24HourClock"
+                  x:Name="lowerBoundDateInput"
+                  SelectedTimeChanged="TimeSelectionChanged"
+                  MinuteIncrement="1" Grid.Row="1" Grid.Column="0"/>
+
+                  <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">to</Label>
+
+                  <TimePicker ClockIdentifier="24HourClock"
+                  SelectedTimeChanged="TimeSelectionChanged"
+                  MinuteIncrement="1" Grid.Row="3" Grid.Column="0"/>
+                </Grid>
+                <Grid Margin="5"></Grid> 
+              -->
+            </StackPanel>
+          </Border>
+
+
+          <!-- This is all the stuff on the right -->
+          <Border BorderThickness="1" BorderBrush="White" Grid.Row="0" Grid.Column="2">
+          <StackPanel >
+
+            <TextBlock x:Name="textWebsiteSelected" HorizontalAlignment="Center" Margin="5" FontSize="20"></TextBlock>
+
+            <views:MainView />
+
+            <Grid ColumnDefinitions="*, *" RowDefinitions="*" HorizontalAlignment="Center">
+              <Button Click="StartStopPingClicked" x:Name="pingButton" Margin="5" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0">Start Pinging Selected Address</Button>
+
+              <Button Margin="5" Grid.Row="0" x:Name="resetSelectionButton" Grid.Column="1" HorizontalAlignment="Center">Reset Graph Selection</Button>
+            </Grid>
+            
+
+          </StackPanel>
+          </Border>
+
+          
+        </Grid>
+        </StackPanel>
+</Window>
