@@ -107,7 +107,6 @@ public class MainViewModel : ViewModelBase
         }
     };
 
-    private int butts = 0;
     public static void AddItem(double val)
     {
         _observableValues.Add(new(DateTime.Now, val));
